@@ -1,0 +1,73 @@
+html, body {
+	margin: 0px;
+	padding: 0px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+}
+
+#main_container {
+	margin: 0px;
+/*	margin-left: 50px;*/
+	padding: 0px;
+}
+
+.rect_selector {
+	background-color: #ff0000;
+	opacity: .2;
+}
+
+.screen_div {
+	background-color: #fff;
+	opacity: .01;
+}
+
+#input_form_template {
+	display: none;
+}
+
+.input_form {
+	z-index: 9999;
+	background-color: #fff;
+	border: solid 1px #bbb;
+	padding: 10px;
+	border-radius: 8px;
+	display: table;
+	position: absolute;
+	max-width: 330px;
+}
+
+.input_form .if_title, .input_form .if_body {
+	margin: 0px;
+	padding: 0px;
+}
+
+
+.input_form .product_info {
+	display: none;
+	font-size: 12px;
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+.input_form .product_info h4 {
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+.input_form .product_info input {
+	float: right;
+	
+}
+.input_form .product_info p, .input_form img {
+	margin-top: 4px;
+}
+
+.input_form img {
+	width: 40px;
+}
+
+.close_box {
+	text-align: right;
+	cursor: pointer;
+	padding-bottom: 3px;
+	color: #ff0000;
+}
+
