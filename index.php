@@ -2,11 +2,12 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="http://reset5.googlecode.com/hg/reset.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script src="js/twitter_bootstrap/bootstrap-tooltip.js"></script>
-	<script src="js/twitter_bootstrap/bootstrap-popover.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/global.js"></script>
 	<script src="js/rect_drawer.js"></script>
 </head>
@@ -16,11 +17,13 @@
 	<div id="main_container">
 		<img id="page_img" alt="" />
 	</div>
+	<div id="issue_meta_info">
+	</div>
 	
 	<div id="input_form_template" class="input_form">
 		<div class="close_box">[close]</div>
 		<div class="select_product">
-			<select class="input_select"></select>
+			<input type="text" class="input_select"></input>
 		</div>
 		<div class="product_info">
 		</div>

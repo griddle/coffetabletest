@@ -130,18 +130,24 @@ var coffee_table = function(){
 		that.populate_select = function(){
 			var select = that.get_select();
 			var product_data = product_json.data;
-			$(select).append($("<option></option>"));
+			
+			var autofill_data = [];
 			for (var k=0; k<product_data.length; ++k){
-				var product_title = k + ". " + product_data[k]["title"];
-				if (product_title.length > 30){
-					product_title = product_title.substr(0,27) + "...";
-				}
-	    	$(select).append($("<option></option>").attr("value",k).text(product_title));
+				autofill_data.push(product_data[k]["title"]);
 			}
+			
+			$(select).typeahead({
+				source : autofill_data,
+				items : 20
+			});
+			
 		};
 
 		that.remove = function(){
 			$(form).remove();
+			$("ul.typeahead").each(function(){
+				$(this).remove();
+			});
 		};
 		that.close = function(){
 			that.remove();
@@ -149,7 +155,17 @@ var coffee_table = function(){
 		};
 		that.get_select_val = function(){
 			var sel = that.get_select();
-			return $(sel).val();
+			var val = $(sel).val();
+			var selected = null;
+			
+			var product_data = product_json.data;
+			for (var k=0; k<product_data.length; ++k){
+				if (val == product_data[k]["title"]){
+					selected = k
+				}
+			}
+			
+			return selected;
 		};
 		
 		that.on_submit = function(){
@@ -180,8 +196,6 @@ var coffee_table = function(){
 		input_form.style.left = _coords.x + _coords.w + 5 + "px";
 		$(input_form).hide().fadeIn(300);
 		iform.populate_select();
-		
-
 
 		var close_box = iform.get_close_box();
 		$(close_box).click(function(e){
@@ -192,8 +206,6 @@ var coffee_table = function(){
 			var prod_id = iform.get_select_val();
 			iform.populate_product_info(prod_id);
 		});
-		
-
 		
 	};
 	
@@ -212,6 +224,17 @@ var coffee_table = function(){
 				rect_draw.on_draw = handle_draw;
 				rect_draw.on_start_draw = handle_start_draw;
 			};
+			
+			// issue data
+			var issue_data = meta_json.data;
+			var issue_meta = document.getElementById("issue_meta_info");
+			
+			var pub_date = issue_data.published_at ? issue_data.published_at.substr(0,10) : null;
+			
+			$(issue_meta).append("<h3>" + issue_data.name || "" + "</h4>");
+			$(issue_meta).append("<p><b>pages:</b> " + (issue_data.pages || "?") + "</p>");
+			$(issue_meta).append("<p><b>pub date:</b> " + (pub_date || "?") + "</p>");
+			$(issue_meta).append("<p><b>catalog:</b> " + (issue_data.catalog_name || "?") + "</p>");
 		};
 		
 		
@@ -228,7 +251,7 @@ var coffee_table = function(){
 		remote_api.get_both_async(issue_id, function(){
 			if (!meta_json) {throw('no meta_json');}
 			if (!product_json) {throw('no product_json');}
-
+			
 			// populate and setup UI
 			populate_ui();
 		});
