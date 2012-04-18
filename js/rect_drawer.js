@@ -69,11 +69,11 @@ var rect_drawer = function( _relative_ele ){
 				h : Math.abs(diff_loc["height"])
 			};
 			
-			rect.style.left = ((diff_loc["width"] < 0) ? start_loc[0] + diff_loc["width"] : start_loc[0]) + "px";
-			rect.style.width = Math.abs(diff_loc["width"]) + "px";
+			rect.style.left = rect_info.x + "px";
+			rect.style.width = rect_info.w + "px";
 			
-			rect.style.top = ((diff_loc["height"] < 0) ? start_loc[1] + diff_loc["height"] : start_loc[1]) + "px";
-			rect.style.height = Math.abs(diff_loc["height"]) + "px";
+			rect.style.top = rect_info.y + "px";
+			rect.style.height = rect_info.h + "px";
 		};
 		var handleMouseUp = function(e){
 			$(screen_div).unbind('mousemove');

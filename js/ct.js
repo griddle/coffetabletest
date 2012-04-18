@@ -159,7 +159,7 @@ var coffee_table = function(){
 			var product_data = product_json.data;
 			for (var k=0; k<product_data.length; ++k){
 				if (val == product_data[k]["title"]){
-					selected = k
+					selected = k;
 				}
 			}
 			
