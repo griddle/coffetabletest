@@ -11,10 +11,12 @@ html, body {
 	padding: 0px;
 	float: left;
 }
-#issue_meta_info {
+
+
+#right_side_data {
 	float: left;
 	padding: 20px;
-	
+	max-width: 300px;
 }
 
 #issue_meta_info h3 {
@@ -26,6 +28,19 @@ html, body {
 	margin-bottom: 0px;
 }
 
+#submission_data {
+	background-color: #eee;
+}
+#submission_data table {
+	display: none;
+	margin-top: 20px;
+}
+#submission_data table tr:first-child {
+	font-weight: bold;
+}
+#submission_data table tr td{
+	padding: 5px;
+}
 
 .rect_selector {
 	background-color: #ff0000;

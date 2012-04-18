@@ -17,7 +17,33 @@
 	<div id="main_container">
 		<img id="page_img" alt="" />
 	</div>
-	<div id="issue_meta_info">
+	<div id="right_side_data">
+		<div id="issue_meta_info">
+		</div>
+		<div id="submission_data">
+			<table>
+				<tr>
+					<td>
+						issue id
+					</td>
+					<td>
+						product id
+					</td>
+					<td>
+						x
+					</td>
+					<td>
+						y
+					</td>
+					<td>
+						width
+					</td>
+					<td>
+						height
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 	
 	<div id="input_form_template" class="input_form">

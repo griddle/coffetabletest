@@ -167,12 +167,18 @@ var coffee_table = function(){
 		};
 		
 		that.on_submit = function(){
-			var output_str = "x: " + coords.x + ", y: " + coords.y + ", width: " + coords.w + ", height: " + coords.h;
-			output_str += "\n\n";
-			output_str += "for issue id: " + issue_id;
-			output_str += "\n";
-			output_str += "for product id: " + curr_prod_id;
-			alert(output_str);
+			$("#submission_data table").css("display", "table");
+			
+			var output_str = "<tr>";
+			output_str += "<td>" + issue_id + "</td>";
+			output_str += "<td>" + curr_prod_id + "</td>";
+			output_str += "<td>" + coords.x + "</td>";
+			output_str += "<td>" + coords.y + "</td>";
+			output_str += "<td>" + coords.w + "</td>"
+			output_str += "<td>" + coords.h + "</td>"
+			output_str += "</tr>";
+			
+			$('#submission_data table tr:last').after(output_str);
 			
 			that.close();
 		};
