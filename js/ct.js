@@ -109,7 +109,6 @@ var coffee_table = function(){
 			
 			var title = product.title || "?";
 			var brand = product.brand || "?";
-			var category = product.category || "?";
 			var r_prod_id = product.retailer_product_id || "?";
 			var img_url = product.medium_img_url || "http://save-time.org/wp-content/uploads/2011/10/pink-question-mark.jpg";
 			var description = product.description || "?";
@@ -117,7 +116,6 @@ var coffee_table = function(){
 			
 			$(form_body).append($("<h4>" + title + "</h4>"));
 			$(form_body).append($("<p><b>brand:</b> " + brand + "</p>"));
-			$(form_body).append($("<p><b>category:</b> " + category + "</p>"));
 			$(form_body).append($("<p><b>retailer product id:</b> " + r_prod_id + "</p>"));
 			$(form_body).append($("<a href='" + img_url + "' target='_blank'><img src='" + img_url + "' alt='' /></a>"));
 			$(form_body).append($("<p><b>description:</b> " + description + "</p>"));
