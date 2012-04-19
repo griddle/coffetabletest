@@ -71,12 +71,14 @@ var coffee_table = function(){
 	};
 	
 	
+	// generic product form creator and manipulator
 	var iform = function() {
 		// supports one input form at a time
 		var that = {};
 		var form;
 		var coords, curr_prod_id;
 		
+		// get a new form and get current forms components
 		that.get_input_form = function(_for_coords){
 			coords = _for_coords;
 			var new_div = $("#input_form_template").clone();
@@ -93,16 +95,18 @@ var coffee_table = function(){
 			return $(form).find(".product_info")[0];
 		};
 		
-		that.populate_product_info = function(_id, _on_submit){
+		// given a product id, populate form
+		that.populate_product_info = function(_id){
 			var form_body = that.get_body();
-			var submit_handler = _on_submit;
 			curr_prod_id = _id;
 			
+			// if null product, hide product info section, so just select product input shown
 			if (!curr_prod_id) {
 				form_body.style.display = "none";
 				return;
 			}
 			
+			// populate product info
 			var product = product_json.data[curr_prod_id];
 			$(form_body).empty();
 			form_body.style.display = "block";
@@ -188,24 +192,29 @@ var coffee_table = function(){
 
 	
 	
-	// rect_draw event callbacks
+	// ------- rect_draw event callbacks ---------
+	
+	// when user starts to draw a new rect
 	var handle_start_draw = function(){
 		iform.remove();
 	};
+	// after a rectangle is finished drawing
 	var handle_draw = function(_coords, _rect){
 		iform.remove();
+		// create new product form
 		var input_form = iform.get_input_form(_coords);
 		document.body.appendChild(input_form);
 		input_form.style.top = _coords.y + "px";
 		input_form.style.left = _coords.x + _coords.w + 5 + "px";
 		$(input_form).hide().fadeIn(300);
+		// populate form's selct input with all product data
 		iform.populate_select();
-
+		
+		// setup event listeners for new product form
 		var close_box = iform.get_close_box();
 		$(close_box).click(function(e){
 			iform.close();
 		});
-		
 		$(iform.get_select()).change(function(e){
 			var prod_id = iform.get_select_val();
 			iform.populate_product_info(prod_id);
@@ -223,18 +232,17 @@ var coffee_table = function(){
 			e_page_img.src = img_url;
 			
 			e_page_img.onload = function() {
-				// init rectangle drawer
+				// init rectangle drawer after img loads
 				rect_draw = rect_drawer(e_page_img);
 				rect_draw.on_draw = handle_draw;
 				rect_draw.on_start_draw = handle_start_draw;
 			};
 			
-			// issue data
+			
+			// add issue data to page
 			var issue_data = meta_json.data;
 			var issue_meta = document.getElementById("issue_meta_info");
-			
 			var pub_date = issue_data.published_at ? issue_data.published_at.substr(0,10) : null;
-			
 			$(issue_meta).append("<h3>" + issue_data.name || "" + "</h4>");
 			$(issue_meta).append("<p><b>pages:</b> " + (issue_data.pages || "?") + "</p>");
 			$(issue_meta).append("<p><b>pub date:</b> " + (pub_date || "?") + "</p>");
